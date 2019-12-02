@@ -8,7 +8,8 @@ namespace AdventOfCode
     {
         static void Main(string[] args)
         {
-            day01.Day1.Solve();
+            //day01.Day1.Solve();
+            day02.Day2.Solve();
             Console.ReadKey();
         }
     }

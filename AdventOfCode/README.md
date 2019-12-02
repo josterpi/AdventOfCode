@@ -8,3 +8,8 @@ I'm planning to do the AoC with C# and unit tests, ideally TDD. There's a lot to
  * Install Markdown and Github extensions to VS
  * Write solution in Program.cs
  * In the VS properties for day1.txt, set Copy to Output Directory to "Copy if Newer"
+
+## Day 2 log
+
+ * Refactor project into a folder per day
+ * 
