@@ -10,7 +10,8 @@ namespace AdventOfCode
         {
             //day01.Day1.Solve();
             //day02.Day2.Solve();
-            day04.Day4.Solve();
+            //day04.Day4.Solve();
+            day05.Day5.Solve();
             Console.ReadKey();
         }
     }
