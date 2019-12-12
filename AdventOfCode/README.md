@@ -12,4 +12,8 @@ I'm planning to do the AoC with C# and unit tests, ideally TDD. There's a lot to
 ## Day 2 log
 
  * Refactor project into a folder per day
- * 
+
+
+## Day 5 log
+
+ * After implementing Part 1 by modifying the Day 2 intcode function, I've decided that I've terribly overengineered it and I'm going to start over for part 2, modeled roughly on encse's [excellent implementation](https://github.com/encse/adventofcode/blob/master/2019/Day05/Solution.cs).
