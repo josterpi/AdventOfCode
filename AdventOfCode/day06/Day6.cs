@@ -20,6 +20,7 @@ namespace AdventOfCode.day06
                 spaceObjects.Add(orbit[0]);
                 spaceObjects.Add(orbit[1]);
             }
+            // Part 1
             foreach (var obj in spaceObjects)
             {
                 var orbit = input.Find(x => x[1] == obj);
@@ -31,7 +32,24 @@ namespace AdventOfCode.day06
                     orbit = input.Find(x => x[1] == orbit[0]);
                 }
             }
-            Console.WriteLine("Output: {0}", directOrbits + indirectOrbits);
+            Console.WriteLine("Part 1: {0}", directOrbits + indirectOrbits);
+
+            // Part 2
+            List<string> you = new List<string>(), santa = new List<string>();
+            var youOrbit = input.Find(x => x[1] == "YOU");
+            var santaOrbit = input.Find(x => x[1] == "SAN");
+            while (youOrbit != null)
+            {
+                you.Add(youOrbit[0]);
+                youOrbit = input.Find(x => x[1] == youOrbit[0]);
+            }
+            while (santaOrbit != null)
+            {
+                santa.Add(santaOrbit[0]);
+                santaOrbit = input.Find(x => x[1] == santaOrbit[0]);
+            }
+            var intersections = you.Intersect(santa);
+            Console.WriteLine("Part 2: {0}", you.FindIndex(x => intersections.First() == x) + santa.FindIndex(x => intersections.First() == x));
         }
     }
 }

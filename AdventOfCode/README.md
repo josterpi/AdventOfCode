@@ -13,6 +13,9 @@ I'm planning to do the AoC with C# and unit tests, ideally TDD. There's a lot to
 
  * Refactor project into a folder per day
 
+## Day 3 log
+
+ * I was stuck on this one for a while. I think what I have is ugly, but it works.
 
 ## Day 5 log
 
