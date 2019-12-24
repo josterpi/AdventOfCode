@@ -28,7 +28,8 @@ namespace AdventOfCode.day05
             var input = rawInput.Split(",").ToList().Select(int.Parse).ToList();
 
             //Day2.Intcode(input, 225, 1);
-            new IntCode(input).Execute();
+            foreach (var i in new IntCode(input).Execute(1))
+                Console.WriteLine("Output: {0}", i);
 
         }
     }
@@ -54,8 +55,9 @@ namespace AdventOfCode.day05
             }
         }
 
-        public int Execute()
+        public IEnumerable<int> Execute(params int[] inputs)
         {
+            var inputStack = new Queue<int>(inputs);
             while (true)
             {
                 OpCode opcode = (OpCode)(RAM[Pointer] % 100);
@@ -64,21 +66,18 @@ namespace AdventOfCode.day05
                     case OpCode.Add: RAM[RAM[Pointer + 3]] = Arg(1) + Arg(2); Pointer += 4; break;
                     case OpCode.Mul: RAM[RAM[Pointer + 3]] = Arg(1) * Arg(2); Pointer += 4; break;
                     case OpCode.In:
-                        string input;
-                        Console.Write("Input: ");
-                        input = Console.ReadLine();
-                        RAM[RAM[Pointer + 1]] = int.Parse(input);
+                        RAM[RAM[Pointer + 1]] = inputStack.Dequeue();
                         Pointer += 2;
                         break;
                     case OpCode.Out:
-                        Console.WriteLine("Ouput: {0}", Arg(1));
+                        yield return Arg(1);
                         Pointer += 2;
                         break;
                     case OpCode.Jnz: Pointer = Arg(1) != 0 ? Arg(2) : Pointer + 3; break;
                     case OpCode.Jz: Pointer = Arg(1) == 0 ? Arg(2) : Pointer + 3; break;
                     case OpCode.Lt: RAM[RAM[Pointer + 3]] = Arg(1) < Arg(2) ? 1 : 0; Pointer += 4;  break;
                     case OpCode.Eq: RAM[RAM[Pointer + 3]] = Arg(1) == Arg(2) ? 1 : 0; Pointer += 4; break;
-                    case OpCode.Hlt: return RAM[0];
+                    case OpCode.Hlt: yield break;
                     default: throw new ArgumentException("Invalid opcode: " + opcode);
                 }
             }
