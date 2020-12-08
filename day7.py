@@ -8,23 +8,23 @@ def parse_input(filename):
     with open(filename) as f:
         for line in f:
             bag, spec = line.strip(".\n").split(" bags contain ")
-            bag_rules =  []
+            bag_rules =  {}
             if spec != "no other bags":
                 for part in spec.split(", "):
                     part = part.split()[:-1]
                     count = int(part[0])
                     name = " ".join(part[1:])
-                    bag_rules.append({'count': count, 'name': name})
+                    bag_rules[name] =  count
             rules[bag] = bag_rules
     return rules
 
 def find_gold(bag, rules):
     if not rules:
         return False
-    bag_names = [b['name'] for b in rules[bag]]
+    bag_names = rules[bag].keys()
     if "shiny gold" in bag_names:
         return True
-    return any([find_gold(name, rules) for name in bag_names if rules[name]])
+    return any([find_gold(name, rules) for name in bag_names])
 
 def main():
     input = parse_input("day7.txt")
