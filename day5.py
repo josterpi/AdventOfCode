@@ -17,11 +17,18 @@ def seat_id(input):
 
 def main():
     high_seat = 0
+    seats = []
     for line in open("day5.txt"):
         id = seat_id(line.strip())
+        seats.append(id)
         if id > high_seat:
             high_seat = id
     print(f"Part 1: {high_seat}")
+    missing = set(range(high_seat+1)) - set(seats)
+    for seat in missing:
+        if seat - 1 not in missing and seat + 1 not in missing:
+            print(f"Part 2: {seat}")
+            return
 
 if __name__ == '__main__':
     main()
