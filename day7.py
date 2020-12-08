@@ -1,8 +1,4 @@
 
-# .* bags contain no other bags.
-# .* bags contain \d .* bag[s]?.
-# .* bags contain \d .* bag[s]?, \d .* bag[s]?, ... .
-
 def parse_input(filename):
     rules = {}
     with open(filename) as f:
@@ -26,6 +22,11 @@ def find_gold(bag, rules):
         return True
     return any([find_gold(name, rules) for name in bag_names])
 
+def fill_gold(bag, rules):
+    if not rules[bag]:
+        return 0
+    return sum([count + fill_gold(name, rules) * count for name, count in rules[bag].items()])
+
 def main():
     input = parse_input("day7.txt")
     gold_count = 0
@@ -33,6 +34,7 @@ def main():
         if find_gold(key, input):
             gold_count += 1
     print(f"Part 1: {gold_count}")
+    print("Part 2: %s" % fill_gold("shiny gold", input))
 
 if __name__ == '__main__':
     main()
