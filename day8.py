@@ -25,9 +25,13 @@ def run(input):
     accumulator = 0
     pointer = 0
     run_count = [0] * len(input)
+    error = False
     # import pdb; pdb.set_trace()
     while True:
-        if run_count[pointer] == 1 or pointer == len(input):
+        if pointer == len(input):
+            break
+        if run_count[pointer] == 1:
+            error = True
             break
         instr, arg = input[pointer]
         run_count[pointer] += 1
@@ -38,14 +42,28 @@ def run(input):
             pointer += 1
         if instr == JMP:
             pointer += arg
-    return accumulator
+    return (accumulator, error)
 
 def main():
     input = [line.strip() for line in open("day8.txt")]
     # input = test_input.split('\n')
     input = parse_input(input)
-    accumulator = run(input)
+    accumulator, err = run(input)
     print(f"Part 1: {accumulator}")
+    inputs = []
+    for i in range(len(input)):
+        if input[i][0] in (NOP, JMP):
+            new_input = input.copy()
+            if input[i][0] == NOP:
+                new_input[i] = (JMP, new_input[i][1])
+            else:
+                new_input[i] = (NOP, new_input[i][1])
+            inputs.append(new_input)
+    for i in inputs:
+        accumulator, err = run(i)
+        if not err:
+            break
+    print(f"Part 2: {accumulator}")
 
 if __name__ == '__main__':
     main()
