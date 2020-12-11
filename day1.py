@@ -1,6 +1,6 @@
 
 def main():
-    input = [int(line.strip()) for line in open("day1.txt")]
+    input = [int(line.strip()) for line in open("input/day1.txt")]
     part1_solved = False
     for i, item1 in enumerate(input):
         for j, item2 in enumerate(input):

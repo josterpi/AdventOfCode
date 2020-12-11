@@ -50,7 +50,7 @@ def validator(pp):
     return True
 
 def main():
-    with open("day4.txt") as f:
+    with open("input/day4.txt") as f:
         input = [x.split() for x in f.read().split("\n\n")]
     input = [{x.split(':')[0]: x.split(':')[1] for x in y} for y in input]
     required_fields = ('byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid')

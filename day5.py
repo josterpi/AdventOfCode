@@ -18,7 +18,7 @@ def seat_id(input):
 def main():
     high_seat = 0
     seats = []
-    for line in open("day5.txt"):
+    for line in open("input/day5.txt"):
         id = seat_id(line.strip())
         seats.append(id)
         if id > high_seat:

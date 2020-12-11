@@ -45,7 +45,7 @@ def run(input):
     return (accumulator, error)
 
 def main():
-    input = [line.strip() for line in open("day8.txt")]
+    input = [line.strip() for line in open("input/day8.txt")]
     # input = test_input.split('\n')
     input = parse_input(input)
     accumulator, err = run(input)

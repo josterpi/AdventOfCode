@@ -28,7 +28,7 @@ def fill_gold(bag, rules):
     return sum([count + fill_gold(name, rules) * count for name, count in rules[bag].items()])
 
 def main():
-    input = parse_input("day7.txt")
+    input = parse_input("input/day7.txt")
     gold_count = 0
     for key in input.keys():
         if find_gold(key, input):

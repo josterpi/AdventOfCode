@@ -7,7 +7,7 @@ def count_letter(char, hay):
 def main():
     good = 0
     good2 = 0
-    for line in open("day2.txt"):
+    for line in open("input/day2.txt"):
         low, high, char, pwd = re.match(r"(\d+)-(\d+) ([a-z]): ([a-z]+)", line.strip()).groups()
         count = count_letter(char, pwd)
         if int(low) <= count and count <= int(high):

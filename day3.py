@@ -11,7 +11,7 @@ def check_slope(input, slope):
     return trees
 
 def main():
-    input = [line.strip() for line in open("day3.txt")]
+    input = [line.strip() for line in open("input/day3.txt")]
     trees = check_slope(input, (3, 1))
     print(f"Part 1: {trees}")
     slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
