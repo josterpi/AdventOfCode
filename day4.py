@@ -45,12 +45,20 @@ def main():
             board.append(line.split())
 
     boards = [Board(b) for b in boards]
+    first_win = False
+    board_won = [False] * len(boards)
     for draw in draws:
-        for b in boards:
+        for i, b in enumerate(boards):
             b.register_draw(draw)
             if b.won():
-                print(f"Part 1: {b.score()}")
-                return
+                board_won[i] = True
+                if not first_win:
+                    print(f"Part 1: {b.score()}")
+                    first_win = True
+                if all(board_won):
+                    print(f"Part 2: {b.score()}")
+                    return
+
 
 
 if __name__ == '__main__':
